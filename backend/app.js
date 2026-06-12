@@ -6,6 +6,7 @@ import logout from "./src/routes/logout.route.js"
 import specialties from "./src/routes/specialties.route.js"
 import appointments from "./src/routes/appointments.route.js"
 import expedients from "./src/routes/expedients.route.js"
+import equipments from "./src/routes/equipments.route.js"
 
 const app = express();
 app.use(cookieParser());
@@ -21,5 +22,6 @@ app.use("/api/logout", logout );
 app.use("/api/specialties", specialties);
 app.use("/api/appointments", appointments);
 app.use("/api/expedients", expedients )
+app.use("/api/equipments", equipments)
 
 export default app;
