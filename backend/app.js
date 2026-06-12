@@ -4,6 +4,8 @@ import cors from "cors"
 import patients from "./src/routes/patients.route.js"
 import logout from "./src/routes/logout.route.js"
 import specialties from "./src/routes/specialties.route.js"
+import appointments from "./src/routes/appointments.route.js"
+import expedients from "./src/routes/expedients.route.js"
 
 const app = express();
 app.use(cookieParser());
@@ -17,5 +19,7 @@ app.use(cors({
 app.use("/api/patients", patients);
 app.use("/api/logout", logout );
 app.use("/api/specialties", specialties);
+app.use("/api/appointments", appointments);
+app.use("/api/expedients", expedients )
 
 export default app;

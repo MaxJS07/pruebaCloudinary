@@ -1,10 +1,10 @@
-import model from "../models/appointment.model.js"
+import model from "../models/expedient.model.js"
 
 const controller = {}
 
 controller.get = async (req, res) => {
     try {
-        const data = await model.find().populate("patient_id", "name lastName").populate("specialty_id", "specialtyName description isAvailable");
+        const data = await model.find().populate("patient_id", "name lastName");
         return res.status(200).json(data)
     } catch (error) {
         return res.status(500).json({message: error.message})
@@ -16,20 +16,16 @@ controller.post = async (req, res) => {
         
         const {
             patient_id,
-            specialty_id,
-            appointmentDate,
-            reason,
-            status,
-            observations
+            diagnosis,
+            medications,
+            medicalNotes
         } = req.body;
 
         const newObject = new model({
             patient_id,
-            specialty_id,
-            appointmentDate,
-            reason,
-            status,
-            observations
+            diagnosis,
+            medications,
+            medicalNotes
         })
 
         await newObject.save();
@@ -62,21 +58,17 @@ controller.update = async (req, res) =>{
 
         const {
             patient_id,
-            specialty_id,
-            appointmentDate,
-            reason,
-            status,
-            observations
+            diagnosis,
+            medications,
+            medicalNotes
         } = req.body
 
         let updatedData = {};
 
         if(patient_id) updatedData.patient_id = patient_id;
-        if(specialty_id) updatedData.specialty_id = specialty_id;
-        if(appointmentDate) updatedData.appointmentDate = appointmentDate;
-        if(reason) updatedData.reason = reason;
-        if(status) updatedData.status = status;
-        if(observations) updatedData.observations = observations;
+        if(diagnosis) updatedData.diagnosis = diagnosis;
+        if(medications) updatedData.medications = medications;
+        if(medicalNotes) updatedData.medicalNotes = medicalNotes;
 
         const updatedObject = await model.findByIdAndUpdate(
             req.params.id,
