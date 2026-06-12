@@ -2,7 +2,7 @@ import {Schema, model} from "mongoose"
 
 const patientModel = new Schema({
     name: {type: String},
-    lasName: {type: String},
+    lastName: {type: String},
     email: {type: String},
     password: {type: String},
     birthDate: {type: Date},
