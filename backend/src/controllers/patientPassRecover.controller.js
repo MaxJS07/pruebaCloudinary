@@ -95,7 +95,7 @@ controller.newPassword = async (req, res) => {
             return res.status(403).json({message: "Cambio de contraseña no autorizado."})
         }
 
-        const passHash = await bcrypt.hash(passHash, 10);
+        const passHash = await bcrypt.hash(newPass, 10);
 
         await model.findOneAndUpdate(
             {email: decoded.email},
